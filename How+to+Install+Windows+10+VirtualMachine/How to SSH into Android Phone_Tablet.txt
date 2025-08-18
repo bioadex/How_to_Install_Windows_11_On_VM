@@ -1,0 +1,46 @@
+follow this step to ssh into Android Phone or Tablet 
+
+I will using Termux this only work using that!!!
+
+Then using ssh into your Android using PuTTy 
+
+go to your google play store and download Termux 
+
+after download 
+
+pkg update && pkg upgrade     # we use pkg because android pkg stand for package 
+
+pkg install openssh
+
+sshd          # to start the OpenSSH 
+
+Then set a password by typing passwd 
+
+Enter your desire password and re-enter it 
+
+Find Your Android IP if its connected to internet 
+
+ifconfig or go to setting on your Phone or tablet then go to WI-FI connect 
+
+click on the WI-FI your phone or Tablet then go down click more then scroll down to see your Phone or Tablet IP 
+
+192.168.*.*
+
+
+On your windows laptop 
+
+go to Microsoft Store to download PuTTy 
+
+After the download 
+
+Enter your phone or TABLET IP address and Enter 8022 for port number      # that is the andorid port to ssh into it 
+
+Make sure you SSH button is Checked!!!
+
+Leave the rest as Default 
+
+Click on Open.
+
+With that should be ssh into your Android Phone or Tablet 
+
+
