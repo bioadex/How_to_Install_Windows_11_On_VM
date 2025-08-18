@@ -1,4 +1,4 @@
-Here i will Teaching You how to SSH from Ubuntu Server into Windows 11 
+how to SSH from Ubuntu Server into Windows 11 
 
 First you have to check if sshd is installed on the Windows machine 
 
@@ -27,3 +27,14 @@ New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled Tru
 ssh your_windows_username@windows_ip 
 
 Enter your password of your Windows Computer
+
+
+By now you should be in your Windows machine 
+
+You can confirm by type 
+
+ipconfig 
+
+to check your Windows machine IP 
+
+
