@@ -1,0 +1,99 @@
+Please read this first if you want ssh into windows machine or server 
+
+First get your windows machine ip and username 
+
+to get the ip you need to open power point with administrative mode
+
+type power shell in your windows machine search button then right click then open with administrator 
+
+after type ipconfig  to get the ip address
+
+then open cmd command line you will see username not that down 
+
+then your windows password for better security but this optional 
+
+make sure that OpenSSH is running on your windows machine 
+
+if its not running you can OpenSSH 
+
+Open Powershell with Adminitrative mode or right 
+
+Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH.Server*'
+
+if its says Installed you are GOOD
+
+if not you need to install it 
+
+Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0       # to install client version 
+
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0      # to install server version 
+
+
+try this again 
+
+Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH.Server*'
+
+now it should say installed 
+
+
+Start-Service sshd                       # to start ssh service 
+
+Set-Service -Name sshd -StartupType 'Automatic'     # to start the ssh service upon starting the windows machine 
+
+
+New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22       # allows incoming request 
+
+
+then go into your Host machine for example Ubuntu server or Linux machine where you want to connect to the Windows Machine 
+
+ssh <your_windows_username>@<your_windows_ip>
+
+its will prompt  for your Windows password     ENTER IT then you are connect to your Windows machine 
+
+
+There still a better way to connect to the Windows machine without prompting for Password using generating an SSH key 
+
++++++++++++++++++ SSH INTO WINDOWS MACHINE USING GENERATING SSH KEY ++++++++++++++++++++++++++++++++++++++++++++
+
+Firstly you need to generate ssh key if you do not have one 
+
+on your HOST machine (Ubuntu_Server) 
+
+type :  ssh-keygen 
+
+follow the instruction 
+
+after copy the ssh key to your windows machine 
+
+ssh-copy-id <your_windows_username>@<your_windows_ip>
+
+
+if ssh-copy did not work you can also copy it manually 
+
+ON your Ubuntu_server 
+
+cd .ssh/ 
+ll
+cat id_rsa.pub 
+
+copy 
+
+then go to your windows machine 
+
+C:\Users\<your_windows_username>\.ssh\authorized_keys 
+
+then paste the copy id_rsa into it 
+
+if the .ssh does not exist in your windows machine you can try create the ssh key from windows 
+
+just open the PowerShell in administrative mode then type 
+
+ssh-keygen 
+
+then follow the instruction
+
+after that copy the id_rsa.pub into your Ubuntu_Server then try to ssh into your windows machine 
+
+ssh <windows_user_name>@<windows_ip>
+
+then windows password should be ask enter it 
